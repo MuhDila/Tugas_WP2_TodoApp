@@ -20,19 +20,32 @@ const renderTodoList = () => {
 
         // Create label for todos title
         const labelTitle = document.createElement('label');
-        labelTitle.classList.add('label-title');
-        labelTitle.innerText = todo.title;
+        labelTitle.innerText = "Title : ";
         containerItem.appendChild(labelTitle);
+        const labelTitleValue = document.createElement('label');
+        labelTitleValue.classList.add('label-title');
+        labelTitleValue.innerText = todo.title;
+        containerItem.appendChild(labelTitleValue);
 
+        containerItem.appendChild(document.createElement('br'));
+        
         // Create label for todos description
-        const labelDescription = document.createElement('label');
-        labelDescription.classList.add('label-description');
-        labelDescription.innerText = todo.description;
-        containerItem.appendChild(labelDescription);
+        const labelDesc = document.createElement('label');
+        labelDesc.innerText = "Description : ";
+        containerItem.appendChild(labelDesc);
+        const labelDescriptionValue = document.createElement('label');
+        labelDescriptionValue.classList.add('label-description');
+        labelDescriptionValue.innerText = todo.description;
+        containerItem.appendChild(labelDescriptionValue);
 
+        containerItem.appendChild(document.createElement('br'));
+        
         // Create edit and delete buttons for todos item
         const buttonEdit = createButton('Edit', () => editTodo(index));
+        buttonEdit.classList.add('btn-edit');
         const buttonDelete = createButton('Delete', () => deleteTodo(index));
+        buttonDelete.classList.add('btn-edit');
+        
         containerItem.appendChild(buttonEdit);
         containerItem.appendChild(buttonDelete);
 
@@ -67,12 +80,25 @@ const editTodo = (index) => {
 
     // Create update and cancel buttons
     const updateButton = createButton('Update', () => updateTodo(index));
+    updateButton.classList.add('btn-edit');
     const cancelButton = createButton('Cancel', () => cancelEdit());
+    cancelButton.classList.add('btn-edit');
 
-    // Clear container and append input fields and update button
+    // Clear input fields and append new elements
     const containerItem = document.querySelector(`#task-list .listTodo-item:nth-child(${index + 1}) .container-item`);
     containerItem.innerHTML = '';
+
+    const labelTitle = document.createElement('label');
+    labelTitle.textContent = "Title : ";
+    containerItem.appendChild(labelTitle);
+    
+    const labelDesc = document.createElement('label');
+    labelDesc.textContent = "Description : ";
+    containerItem.appendChild(labelDesc);
+    
+    containerItem.appendChild(labelTitle);
     containerItem.appendChild(inputTitle);
+    containerItem.appendChild(labelDesc);
     containerItem.appendChild(inputDesc);
     containerItem.appendChild(updateButton);
     containerItem.appendChild(cancelButton);
@@ -80,8 +106,8 @@ const editTodo = (index) => {
 
 // Function to update a todos item
 const updateTodo = (index) => {
-    const inputTitle = document.querySelector(`#task-list .listTodo-item:nth-child(${index + 1}) .container-item .edit-input:nth-child(1)`);
-    const inputDesc = document.querySelector(`#task-list .listTodo-item:nth-child(${index + 1}) .container-item .edit-input:nth-child(2)`);
+    const inputTitle = document.querySelector(`#task-list .listTodo-item:nth-child(${index + 1}) .container-item .edit-input:nth-child(2)`);
+    const inputDesc = document.querySelector(`#task-list .listTodo-item:nth-child(${index + 1}) .container-item .edit-input:nth-child(4)`);
 
     // Update todos with new values from input fields
     todoList[index].title = inputTitle.value.trim();
