@@ -6,5 +6,5 @@
 
  ## Ui Design 
 <div align="center">
-    <img src="images/ss.png">
+    <img src="img/ss.png">
 </div>
